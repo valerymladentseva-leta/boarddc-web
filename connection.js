@@ -3,7 +3,7 @@ let boardEndpoint='', boardChecked=0, boardLookup=null;
 async function boardResolve(){
  if(boardEndpoint && Date.now()-boardChecked<30000)return boardEndpoint;
  if(!boardLookup)boardLookup=(async()=>{
-  const r=await fetch('https://raw.githubusercontent.com/valerymladentseva-leta/boarddc-web/main/endpoint.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});
+  const r=await fetch('https://raw.githubusercontent.com/comet-ranger-lc/boarddc-web/main/endpoint.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});
   if(!r.ok)throw Error('Не удалось получить адрес сервера');
   const data=await r.json(),u=new URL(data.url);
   if(u.protocol!=='https:'||!u.hostname.endsWith('.trycloudflare.com')||u.pathname!=='/'||u.search||u.hash||u.username||u.password||u.port)throw Error('Некорректный адрес сервера');
